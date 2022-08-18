@@ -9,7 +9,11 @@ def random_knapsack(config: Config):
     print('Random Knapsack')
     data = RandomDataset(config)
     ga = GeneticAlgorithm(config, data)
-    ga.train()
+    solution = ga.train()
+    print(f'\n--- FINAL SOLUTION ---')
+    print(solution)
+    accuracy = solution.fitness / data.budget
+    print(f'Utilization: {accuracy * 100:.2f}%')
 
 
 if __name__ == '__main__':
