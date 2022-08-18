@@ -8,12 +8,13 @@ DEFAULTS = {
     # Dataset
     'min_price': 100,
     'max_price': 1000,
-    'bank_length': 10,
+    'bank_length': 20,
     'budget': 5000,
 
     # Training
-    'max_population': 10,
-    'gene_length': 5,
+    'population_size': 8,
+    'num_generation': 10,
+    'show_population': False,
 }
 
 
