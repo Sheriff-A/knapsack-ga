@@ -4,10 +4,12 @@ from utils.config import Config
 from data.dataset import RandomDataset
 from ga.ga import GeneticAlgorithm
 
+
 def random_knapsack(config: Config):
     print('Random Knapsack')
     data = RandomDataset(config)
-    ga = GeneticAlgorithm(config)
+    ga = GeneticAlgorithm(config, data)
+    ga.train()
 
 
 if __name__ == '__main__':
@@ -19,9 +21,9 @@ if __name__ == '__main__':
     print(command)
 
     if command == 'random':
-        config = Config(**args)
-        print(f'Config: {config}')
-        random_knapsack(config)
+        configuration = Config(**args)
+        print(f'Config: {configuration}')
+        random_knapsack(configuration)
 
     else:
         print(f'Command ({command}) Not Found')
