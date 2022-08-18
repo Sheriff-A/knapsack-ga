@@ -18,6 +18,7 @@ DEFAULTS = {
     "population_cutoff_threshold": .6,
     "crossover_rate": .8,
     "mutation_rate": .1,
+    "num_elites": 2,
 }
 
 

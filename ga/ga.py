@@ -14,10 +14,11 @@ class GeneticAlgorithm:
             population.append(Knapsack(config))
         self.population = population
         self.num_generations = config.get('num_generation')
-        self.show_population = config.get('show_population')
+        self.num_elites = config.get("num_elites")
         self.mutation_rate = config.get("mutation_rate")
         self.crossover_rate = config.get("crossover_rate")
         self.threshold = config.get("population_cutoff_threshold")
+        self.show_population = config.get('show_population')
         self.bank = data.bank
         self.target = data.budget
 
@@ -89,15 +90,14 @@ class GeneticAlgorithm:
                 break
 
             # Selection Algorithm: Elitism
-            first_best = self.population[0]
-            second_best = self.population[1]
+            elites = self.population[:self.num_elites]
 
             cutoff_mark = int(self.threshold * len(self.population))
 
-            new_population = [first_best, second_best]
+            new_population = [*elites]
             reproduction_pool = self.population[:cutoff_mark]
 
-            new_offspring = create_offspring(len(self.population) - 2, self.crossover_rate, self.mutation_rate,
+            new_offspring = create_offspring(len(self.population) - self.num_elites, self.crossover_rate, self.mutation_rate,
                                              reproduction_pool)
 
             new_population.extend(new_offspring)
