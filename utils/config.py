@@ -1,14 +1,26 @@
 import random
+import numpy as np
 
 DEFAULTS = {
-    #     Random
-    'seed': 123
+    # General
+    'seed': 123,
+
+    # Dataset
+    'min_price': 100,
+    'max_price': 1000,
+    'bank_length': 10,
+    'budget': 5000,
+
+    # Training
+    'max_population': 10,
+    'gene_length': 5,
 }
 
 
-def get_random_seed(seed: int = None):
+def set_random_seed(seed: int = None):
     if seed is None:
         seed = random.randint(0, 2 ** 32 - 1)
+    np.random.seed(seed)
     return seed
 
 
@@ -20,16 +32,16 @@ class Config:
                 continue
             params[opt] = opts[opt]
 
-        params['seed'] = get_random_seed(opts['seed'])
+        params['seed'] = set_random_seed(opts['seed'])
 
         self._PARAMS = params
 
-    def get(self, attr):
+    def get(self, attr: str):
         if attr in self._PARAMS:
             return self._PARAMS[attr]
         raise ValueError(f'{self} does not contain attribute {attr}.')
 
-    def set(self, attr, value):
+    def set(self, attr: str, value):
         if attr in self._PARAMS:
             self._PARAMS[attr] = value
         else:
