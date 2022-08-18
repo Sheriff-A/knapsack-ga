@@ -15,6 +15,9 @@ DEFAULTS = {
     'population_size': 8,
     'num_generation': 10,
     'show_population': False,
+    "population_cutoff_threshold": .6,
+    "crossover_rate": .8,
+    "mutation_rate": .1,
 }
 
 
