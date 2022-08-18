@@ -1,14 +1,13 @@
 from utils.parser import command_parser
 from utils.config import Config
-from utils.random import RandomNumberGenerator
 
+from data.dataset import RandomDataset
+from ga.ga import GeneticAlgorithm
 
 def random_knapsack(config: Config):
     print('Random Knapsack')
-    seed = config.get('seed')
-    print(f'Seed: {seed}')
-    rng = RandomNumberGenerator(seed)
-    print(rng.get_random())
+    data = RandomDataset(config)
+    ga = GeneticAlgorithm(config)
 
 
 if __name__ == '__main__':
