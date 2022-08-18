@@ -1,16 +1,28 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from utils.parser import command_parser
+from utils.config import Config
+from utils.random import RandomNumberGenerator
 
 
-# Press the green button in the gutter to run the script.
+def random_knapsack(config: Config):
+    print('Random Knapsack')
+    seed = config.get('seed')
+    print(f'Seed: {seed}')
+    rng = RandomNumberGenerator(seed)
+    print(rng.get_random())
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    parser = command_parser()
+    parse_args = parser.parse_args()
+    print(parse_args)
+    args = vars(parse_args)
+    command = args.pop('command')
+    print(command)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    if command == 'random':
+        config = Config(**args)
+        print(f'Config: {config}')
+        random_knapsack(config)
+
+    else:
+        print(f'Command ({command}) Not Found')
