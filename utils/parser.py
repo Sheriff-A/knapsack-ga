@@ -75,6 +75,34 @@ def command_parser():
         help="Toggle to Show Population after Every Generation"
     )
 
+    subps_random.add_argument(
+        '--population_cutoff_threshold',
+        type=float,
+        default=.6,
+        help="Threshold to Select Top Members from to be used in Crossover"
+    )
+
+    subps_random.add_argument(
+        '--crossover_rate',
+        type=float,
+        default=.8,
+        help="Probability of Applying Crossover"
+    )
+
+    subps_random.add_argument(
+        '--mutation_rate',
+        type=float,
+        default=.1,
+        help="Probability of Applying Mutation"
+    )
+
+    subps_random.add_argument(
+        '--num_elites',
+        type=int,
+        default=2,
+        help="Number of Members to Select with Elitism"
+    )
+
     subps_random.set_defaults(command='random')
 
     return parser
